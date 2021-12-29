@@ -11,7 +11,7 @@ import fileUtility.BaseClass;
 public class createOrganizationsTest extends BaseClass {
 
 
-	@Test
+	@Test(groups={"smoketest"})
 	public void CreateOrganization() throws Exception {
 		
 		homePage hp = new homePage(dri);

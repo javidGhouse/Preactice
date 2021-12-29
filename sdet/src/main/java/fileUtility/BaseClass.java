@@ -27,11 +27,11 @@ public class BaseClass {
 	public dataBaseUtility dbf = new dataBaseUtility();
 	public webDriverUtilities wdu = new webDriverUtilities();
 
-	@Parameters("browser")
-	@BeforeClass
-	public void launchBrowser(String browser) throws IOException {
-		// dri = new ChromeDriver();
-		//String browser = pf.readDataFromProperty("browser");
+	//@Parameters("browser")
+	@BeforeClass(groups= {"smoketest"})
+	public void launchBrowser() throws IOException {
+		dri = new ChromeDriver();
+		String browser = pf.readDataFromProperty("browser");
 		if (browser.equalsIgnoreCase("Chrome")) {
 			dri = new ChromeDriver();
 		}
@@ -49,7 +49,7 @@ public class BaseClass {
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(groups= {"smoketest"})
 	public void login() throws Exception {
 		Login_Pom lp = new Login_Pom(dri);
 		String user = pf.readDataFromProperty("username");
@@ -61,7 +61,7 @@ public class BaseClass {
 	 * @BeforeMethod public void pressLead() { lp.leadMethod(dri); }
 	 */
 
-	@AfterMethod
+	@AfterMethod(groups= {"smoketest"})
 	public void logout() throws InterruptedException {
 		// webDriverUtilities wdu = new webDriverUtilities();
 		// wdu.waitUntilPageLoad(dri);
@@ -70,7 +70,7 @@ public class BaseClass {
 		lo.signOut();
 	}
 
-	@AfterClass
+	@AfterClass(groups= {"smoketest"})
 	public void closeBrowser() {
 		driver.close();
 	}
