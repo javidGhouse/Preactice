@@ -30,7 +30,7 @@ public class BaseClass {
 	//@Parameters("browser")
 	@BeforeClass(groups= {"smoketest"})
 	public void launchBrowser() throws IOException {
-		dri = new ChromeDriver();
+	
 		String browser = pf.readDataFromProperty("browser");
 		if (browser.equalsIgnoreCase("Chrome")) {
 			dri = new ChromeDriver();
